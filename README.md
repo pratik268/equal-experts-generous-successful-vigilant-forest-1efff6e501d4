@@ -1,3 +1,70 @@
+# Operability Take Home
+
+This is a Python API that gets the public Gists for a GitHub user.
+
+## Requirements
+
+Python 3.12 or Docker.
+
+## Run locally
+
+Create a virtual environment if you want one.
+
+    python -m venv .venv
+
+Activate it and install the dependencies.
+
+    pip install -r requirements.txt
+
+Start the API.
+
+    python app.py
+
+The API will be available on port 8080.
+
+For example:
+
+    http://localhost:8080/octocat
+
+## Run tests
+
+    python -m unittest
+
+The tests mock the GitHub API, so they do not need a network connection.
+
+## Run with Docker
+
+Build the image.
+
+    docker build -t gists-api .
+
+Run it.
+
+    docker run --rm -p 8080:8080 gists-api
+
+Then open:
+
+    http://localhost:8080/octocat
+
+## API
+
+GET /<username>
+
+The API calls the GitHub public Gists endpoint and returns a small list containing the gist id, description and URL.
+
+If GitHub returns an error, the API returns the same HTTP status with a simple error message.
+
+## Implementation notes
+
+The application uses Flask for the HTTP server and requests for the GitHub API call.
+
+The GitHub response is reduced to only the fields needed by this API. The tests use mocked GitHub responses so the application behavior can be tested without depending on GitHub being available.
+
+The container listens on port 8080 as required by the exercise.
+
+
+## Original Assignment:
+
 ## :warning: Please read these instructions carefully and entirely first
 * Clone this repository to your local machine.
 * Use your IDE of choice to complete the assignment.
