@@ -6,7 +6,13 @@ app = Flask(__name__)
 @app.route("/<username>")
 def gists(username):
     url = f"https://api.github.com/users/{username}/gists"
-    response = requests.get(url, timeout=5)
+
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28"
+    }
+
+    response = requests.get(url, headers=headers, timeout=5)
 
     if response.status_code != 200:
         return jsonify({"error": "GitHub user not found"}), response.status_code
