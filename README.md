@@ -10,7 +10,7 @@ Python 3.12 or Docker.
 
 Create a virtual environment if you want one.
 
-    python -m venv .venv
+    python -m venv .venv or python3 -m venv .venv (whicever is applicable)
 
 Activate it and install the dependencies.
 
